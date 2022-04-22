@@ -87,15 +87,15 @@ class SGP40:
         
     def measureRaw(self, temperature, humidity):
         # 2*humi + CRC
-        #paramh = struct.pack(">H", math.ceil(humidity * 0xffff / 100))
+        paramh = struct.pack(">H", math.ceil(humidity * 0xffff / 100))
         h = humidity * 0xffff / 100
-        paramh = (h >> 8, h & 0xff)
+        # paramh = (h >> 8, h & 0xff)
         crch = self.__crc(paramh[0], paramh[1])
         
         # 2*temp + CRC
-        #paramt = struct.pack(">H", math.ceil((temperature + 45) * 0xffff / 175))
+        paramt = struct.pack(">H", math.ceil((temperature + 45) * 0xffff / 175))
         t = (temperature + 45) * 0xffff / 175
-        paramt = (t >> 8, t & 0xff)
+        #paramt = (t >> 8, t & 0xff)
         crct = self.__crc(paramt[0], paramt[1])
         
         WITH_HUM_COMP[2:3] = paramh
