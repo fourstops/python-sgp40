@@ -123,3 +123,10 @@ if __name__ == '__main__':
     sgp = SGP40()
     time.sleep(1)
     try:
+       while True:
+         # print("Raw Gas: ", sgp.raw())
+         print("measureRaw Gas: %d" %sgp.measureRaw(25, 50))
+         time.sleep(1)
+
+    except KeyboardInterrupt:
+       exit()
